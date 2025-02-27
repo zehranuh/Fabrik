@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,12 +9,12 @@ namespace Fabrik
 {
     class Job
     {
-        public enum State {  Pending, InWork, Done }
+        public enum State { Pending, InWork, Done }
         public string JobName { get; }
         public string Product { get; }
         public int Quantity { get; }
         private int producedQuantity;
-        public  State CurrentState { get; private set; }
+        public State CurrentState { get; private set; }
 
         public Job(string jobName, string product, int quantity)
         {
@@ -53,6 +54,11 @@ namespace Fabrik
             {
                 CurrentState = State.Pending;
             }
+        }
+
+        public void Status()
+        {
+            // Der Benutzer kann den Status eines Jobs abfragen.
         }
     }
 }

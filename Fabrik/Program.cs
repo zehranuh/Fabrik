@@ -9,21 +9,26 @@ namespace Fabrik
         public static void Main(string[] args)
         {
             Machine machine = new Machine();
-            int tickCounter = 0;
 
             while (true)
             {
-                if (tickCounter % 3 == 0)
-                {
-                    machine.CheckRunning();
-                }
-
                 Console.WriteLine("Befehle: start, stop, fail, reset, exit");
                 string input = Console.ReadLine().ToLower();
                 switch (input)
                 {
                     case "start":
-                        machine.Start();
+                        Console.WriteLine("Wähle einen Job: 1=Auto bauen, 2=Kabel erstellen, 3=Metallstück herstellen");
+                        int jobType = int.Parse(Console.ReadLine());
+                        string product = jobType switch
+                        {
+                            1 => "Auto",
+                            2 => "Kabel",
+                            3 => "Metallstück",
+                            _ => throw new ArgumentException("Ungültiger Job-Typ")
+                        };
+                        Console.WriteLine("Stückzahl:");
+                        int quantity = int.Parse(Console.ReadLine());
+                        machine.StartJob(product, quantity);
                         break;
                     case "stop":
                         machine.Stop();
@@ -40,8 +45,6 @@ namespace Fabrik
                         Console.WriteLine("Ungültiger Befehl");
                         break;
                 }
-                Console.WriteLine($"Aktuelle Signalleuchte: {machine.GetSignalLightState()}");
-                tickCounter++;
             }
         }
     }
