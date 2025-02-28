@@ -15,6 +15,7 @@ namespace Fabrik
         public int Quantity { get; }
         private int producedQuantity;
         public State CurrentState { get; private set; }
+        private SignalLight signalLight = new SignalLight();
 
         public Job(string jobName, string product, int quantity)
         {
@@ -39,6 +40,7 @@ namespace Fabrik
             if (CurrentState == State.InWork)
             {
                 producedQuantity++;
+                signalLight.SetState(SignalLight.State.Green); 
                 Console.WriteLine($"Produziere {Product}... ({producedQuantity}/{Quantity})");
                 if (producedQuantity == Quantity)
                 {
@@ -54,11 +56,6 @@ namespace Fabrik
             {
                 CurrentState = State.Pending;
             }
-        }
-
-        public void Status()
-        {
-            // Der Benutzer kann den Status eines Jobs abfragen.
         }
     }
 }

@@ -28,16 +28,26 @@ namespace Fabrik
             signalLight.SetState(SignalLight.State.Green);
             Console.WriteLine($"Job gestartet: Produziere {quantity} {product}.");
 
+            Random random = new Random();
             for (int i = 1; i <= quantity; i++)
             {
+                if (random.Next(0, 10) < 9) 
+                {
+                    Fail();
+                    break;
+                }
+
                 Console.WriteLine($"Produziere {product}... ({i} von {quantity})");
                 Thread.Sleep(2000);
             }
 
-            currentState = State.Ready;
-            signalLight.SetState(SignalLight.State.Yellow);
-            Console.WriteLine($"Job abgeschlossen: {quantity} {product} produziert.");
-            Console.WriteLine("Machine ist Ready.");
+            if (currentState != State.Error)
+            {
+                currentState = State.Ready;
+                signalLight.SetState(SignalLight.State.Yellow);
+                Console.WriteLine($"Job abgeschlossen: {quantity} {product} produziert.");
+                Console.WriteLine("Maschine ist bereit.");
+            }
         }
 
         public void Start()
@@ -62,29 +72,31 @@ namespace Fabrik
                 signalLight.SetState(SignalLight.State.Yellow);
                 Console.WriteLine("Maschine gestoppt.");
             }
-            else
+             
             {
                 Console.WriteLine("Maschine kann nicht gestoppt werden.");
             }
         }
 
-        public void Fail()
+        public void Fail()   
         {
             if (currentState == State.Running)
             {
-                currentState = State.Error;
+                currentState = State.Error;  
                 signalLight.SetState(SignalLight.State.Red);
                 Console.WriteLine("Fehler! Die Maschine ist im Error-Zustand.");
-            }
-        }
-
-        public void Reset()
-        {
-            if (currentState == State.Error)
-            {
-                currentState = State.Ready;
-                signalLight.SetState(SignalLight.State.Yellow);
-                Console.WriteLine("Fehler behoben! Die Maschine ist bereit.");
+                Console.WriteLine("Geben Sie '9944' ein, um den Fehler zu beheben:");
+                string input = Console.ReadLine();
+                if (input == "9944")
+                {
+                    currentState = State.Running;
+                    signalLight.SetState(SignalLight.State.Yellow);
+                    Console.WriteLine("Fehler behoben! Die Maschine ist bereit.");
+                }
+                else
+                {
+                    Console.WriteLine("Falscher Code. Fehler nicht behoben.");
+                }
             }
         }
 
@@ -104,6 +116,12 @@ namespace Fabrik
         public SignalLight.State GetSignalLightState()
         {
             return signalLight.GetState();
+        }
+
+        public void Status()
+        {
+            string status = $"Maschinenstatus: {currentState}, Signalleuchte: {signalLight.GetState()}";
+            Console.WriteLine(status);
         }
     }
 }

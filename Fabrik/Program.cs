@@ -9,10 +9,11 @@ namespace Fabrik
         public static void Main(string[] args)
         {
             Machine machine = new Machine();
+            Random random = new Random();
 
             while (true)
             {
-                Console.WriteLine("Befehle: start, stop, fail, reset, exit");
+                Console.WriteLine("Befehle: start, stop, reset, status, exit");
                 string input = Console.ReadLine().ToLower();
                 switch (input)
                 {
@@ -33,11 +34,8 @@ namespace Fabrik
                     case "stop":
                         machine.Stop();
                         break;
-                    case "fail":
-                        machine.Fail();
-                        break;
-                    case "reset":
-                        machine.Reset();
+                    case "status":
+                        machine.Status();
                         break;
                     case "exit":
                         return;
