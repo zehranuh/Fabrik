@@ -16,43 +16,6 @@ namespace Fabrik
         private State currentState = State.Ready;
         private SignalLight signalLight = new SignalLight();
 
-        public Machine()
-        {
-            signalLight.SetState(SignalLight.State.Yellow); 
-        }
-
-        public void StartJob(string product, int quantity)
-        {
-            if (currentState == State.Running)
-            {
-                Console.WriteLine("Ein Job ist bereits in Arbeit.");
-                return;
-            }
-
-            currentState = State.Running;
-            signalLight.SetState(SignalLight.State.Green);
-            Console.WriteLine($"Job gestartet: Produziere {quantity} {product}.");
-
-            Random random = new Random();
-            for (int i = 1; i <= quantity; i++)
-            {
-                if (random.Next(0, 10) < 0.9) 
-                {
-                    Fail();
-                    break;
-                }
-
-                Console.WriteLine($"Produziere {product}... ({i} von {quantity})");
-                Thread.Sleep(2000);
-            }
-
-            if (currentState != State.Error)
-            {
-                currentState = State.Ready;
-                signalLight.SetState(SignalLight.State.Yellow);
-                Console.WriteLine($"Job abgeschlossen: {quantity} {product} produziert.");
-            }
-        }
 
         public void Start()
         {
@@ -61,10 +24,6 @@ namespace Fabrik
                 currentState = State.Running;
                 signalLight.SetState(SignalLight.State.Green);
                 Console.WriteLine("Maschine läuft...");
-            }
-            else
-            {
-                Console.WriteLine("Maschine kann nicht gestartet werden.");
             }
         }
 
@@ -75,10 +34,6 @@ namespace Fabrik
                 currentState = State.Ready;
                 signalLight.SetState(SignalLight.State.Yellow);
                 Console.WriteLine("Maschine gestoppt.");
-            }
-            else
-            {
-                Console.WriteLine("Maschine kann nicht gestoppt werden.");
             }
         }
 

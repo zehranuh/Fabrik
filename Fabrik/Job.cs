@@ -31,22 +31,6 @@ namespace Fabrik
             if (CurrentState == State.Pending)
             {
                 CurrentState = State.InWork;
-                Console.WriteLine($"Jog {JobName} gestartet: Produziere {Quantity} {Product}(s).");
-            }
-        }
-
-        public void Produce()
-        {
-            if (CurrentState == State.InWork)
-            {
-                producedQuantity++;
-                signalLight.SetState(SignalLight.State.Green); 
-                Console.WriteLine($"Produziere {Product}... ({producedQuantity}/{Quantity})");
-                if (producedQuantity == Quantity)
-                {
-                    CurrentState = State.Done;
-                    Console.WriteLine($"Job {JobName} abgeschlossen: {Quantity} {Product}(s) produziert.");
-                }
             }
         }
 

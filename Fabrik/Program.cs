@@ -9,16 +9,16 @@ namespace Fabrik
     {
         public static void Main(string[] args)
         {
+            JobManager jobManager = new JobManager();
             Machine machine = new Machine();
-            Random random = new Random();
 
             while (true)
             {
-                Console.WriteLine("Befehle: start, stop, status, exit");
+                Console.WriteLine("Befehle: addjob, startjobs, status, exit");
                 string input = Console.ReadLine().ToLower();
                 switch (input)
                 {
-                    case "start":
+                    case "addjob":
                         Console.WriteLine("Wähle einen Job: 1=Auto bauen, 2=Kabel machen, 3=Metall bearbeiten.");
                         int jobType = int.Parse(Console.ReadLine());
                         string product = jobType switch
@@ -30,10 +30,13 @@ namespace Fabrik
                         };
                         Console.WriteLine("Stückzahl:");
                         int quantity = int.Parse(Console.ReadLine());
-                        machine.StartJob(product, quantity);
+                        Console.WriteLine("Jobname:");
+                        string jobName = Console.ReadLine();
+                        Job job = new Job(jobName, product, quantity);
+                        jobManager.AddJob(job);
                         break;
-                    case "stop":
-                        machine.Stop();
+                    case "startjobs":
+                        jobManager.StartJobs();
                         break;
                     case "status":
                         machine.Status();
