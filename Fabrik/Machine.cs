@@ -16,6 +16,11 @@ namespace Fabrik
         private State currentState = State.Ready;
         private SignalLight signalLight = new SignalLight();
 
+        public Machine()
+        {
+            signalLight.SetState(SignalLight.State.Yellow); 
+        }
+
         public void StartJob(string product, int quantity)
         {
             if (currentState == State.Running)
@@ -31,7 +36,7 @@ namespace Fabrik
             Random random = new Random();
             for (int i = 1; i <= quantity; i++)
             {
-                if (random.Next(0, 10) < 9) 
+                if (random.Next(0, 10) < 0.9) 
                 {
                     Fail();
                     break;
@@ -46,7 +51,6 @@ namespace Fabrik
                 currentState = State.Ready;
                 signalLight.SetState(SignalLight.State.Yellow);
                 Console.WriteLine($"Job abgeschlossen: {quantity} {product} produziert.");
-                Console.WriteLine("Maschine ist bereit.");
             }
         }
 
@@ -72,7 +76,7 @@ namespace Fabrik
                 signalLight.SetState(SignalLight.State.Yellow);
                 Console.WriteLine("Maschine gestoppt.");
             }
-             
+            else
             {
                 Console.WriteLine("Maschine kann nicht gestoppt werden.");
             }
@@ -90,8 +94,7 @@ namespace Fabrik
                 if (input == "9944")
                 {
                     currentState = State.Running;
-                    signalLight.SetState(SignalLight.State.Yellow);
-                    Console.WriteLine("Fehler behoben! Die Maschine ist bereit.");
+                    Console.WriteLine("Fehler behoben! Die Maschine ist bereit, starte noch mal deinen Job.");
                 }
                 else
                 {

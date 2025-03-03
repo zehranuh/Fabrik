@@ -40,7 +40,6 @@ public class MachineTests
     {
         machine.Start();
         machine.Fail();
-        machine.Reset();
         machine.Start();
         Assert.That(machine.IsRunning(), Is.True);
     }

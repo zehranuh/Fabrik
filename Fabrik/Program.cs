@@ -1,5 +1,6 @@
 ﻿using Fabrik;
 using System;
+using System.Net.Http.Headers;
 
 
 namespace Fabrik
@@ -13,12 +14,12 @@ namespace Fabrik
 
             while (true)
             {
-                Console.WriteLine("Befehle: start, stop, reset, status, exit");
+                Console.WriteLine("Befehle: start, stop, status, exit");
                 string input = Console.ReadLine().ToLower();
                 switch (input)
                 {
                     case "start":
-                        Console.WriteLine("Wähle einen Job: 1=Auto bauen, 2=Kabel erstellen, 3=Metallstück herstellen");
+                        Console.WriteLine("Wähle einen Job: 1=Auto bauen, 2=Kabel machen, 3=Metall bearbeiten.");
                         int jobType = int.Parse(Console.ReadLine());
                         string product = jobType switch
                         {
