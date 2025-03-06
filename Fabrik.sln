@@ -5,6 +5,10 @@ VisualStudioVersion = 17.13.35818.85
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fabrik", "Fabrik\Fabrik.csproj", "{33FA34EC-61B2-43E0-B652-3E08D15CCE9E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Businesslogikk", "Businesslogikk\Businesslogikk.csproj", "{91CFDDFE-6B69-4E5A-ADF8-D3A42D408C3B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuiFabrik", "GuiFabrik\GuiFabrik.csproj", "{7062031F-CFBC-497F-A693-D339EC10E12B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{33FA34EC-61B2-43E0-B652-3E08D15CCE9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33FA34EC-61B2-43E0-B652-3E08D15CCE9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33FA34EC-61B2-43E0-B652-3E08D15CCE9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91CFDDFE-6B69-4E5A-ADF8-D3A42D408C3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91CFDDFE-6B69-4E5A-ADF8-D3A42D408C3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91CFDDFE-6B69-4E5A-ADF8-D3A42D408C3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91CFDDFE-6B69-4E5A-ADF8-D3A42D408C3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7062031F-CFBC-497F-A693-D339EC10E12B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7062031F-CFBC-497F-A693-D339EC10E12B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7062031F-CFBC-497F-A693-D339EC10E12B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7062031F-CFBC-497F-A693-D339EC10E12B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

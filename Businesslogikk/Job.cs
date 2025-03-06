@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Fabrik
 {
-    class Job
+    public class Job
     {
         public enum State { Pending, InWork, Done }
         public string JobName { get; }
@@ -39,6 +39,14 @@ namespace Fabrik
             if (JobName != null)
             {
                 CurrentState = State.Pending;
+            }
+        }
+
+        public void Complete()
+        {
+            if (CurrentState == State.InWork)
+            {
+                CurrentState = State.Done;
             }
         }
     }
